@@ -6,16 +6,11 @@ struct Chmod {
         mods.map(\.value).reduce(0, |)
     }
     func makeMods(_ value:Mod.Value) -> [Mod] {
-        guard (0...Mod.maxValue).contains(value) else {return []}
-        var result = [Mod]()
-        for mod in Mod.allCases {
-            let modValue = value & mod.value
-            if let _mod = Mod(modValue) {
-                result.append(_mod)
-            }
-        }
-        return result
+        guard (0...Mod.maxValue).contains(value) else
+        { return [] }
         
+        return Mod.allCases
+            .compactMap{ Mod(value & $0.value) }
     }
 }
 
@@ -38,7 +33,8 @@ enum Mod:CaseIterable {
     }
     
     init?(_ value:Value) {
-        guard let matchedMod = Mod.allCases.first (where:{$0.value == value}) else {
+        guard let matchedMod = Mod.allCases
+            .first (where:{($0.value ^ value) == 0}) else {
             return nil
         }
         self = matchedMod

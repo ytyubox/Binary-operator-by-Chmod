@@ -30,13 +30,14 @@ final class ChmodTests: XCTestCase {
     }
     func testChmodMakeNumberByMod() {
         let chmod = Chmod()
-        let mods:[Mod] = [.execute,.read,.write]
+        let mods:[Mod] = Mod.allCases
         for mod in mods {
             XCTAssertEqual(
                 chmod.makeNumber(mod),
                 mod.value)
         }
     }
+    
     typealias Pair = (value:Mod.Value, mods:[Mod])
     
     let modsList:[Pair] = [
