@@ -11,7 +11,7 @@ This is a short demo for how to use binary operator works, by example of `chmod`
 |3 |       write, execute |
 |2 |       write,         |
 |1 |              execute |
-|0 |                     ] |
+|0 |                      |
 
 It's inspired by this Stack Overflow Answer: [What does typedef enum syntax like '1 << 0' mean?](https://stackoverflow.com/a/17893748/10172299)
 
